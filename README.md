@@ -28,8 +28,10 @@ Run `hugo` in the project root. The generated site will appear in
 
 A lightweight local theme called `pastel-theme` lives under
 `themes/pastel-theme`.  It contains layouts and a stylesheet
-(`static/css/styles.css`) that implements the modern pastel look.
-Feel free to edit or extend the CSS and templates as the site grows.
+(`static/css/styles.css`) that implements a custom color palette
+inspired by shades of Dry Sage, Vanilla Custard, Beige, Light Bronze,
+and Dusty Rose.  Feel free to edit or extend the CSS and templates
+as the site grows.
 
 ## Content Structure
 

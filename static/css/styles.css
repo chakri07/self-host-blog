@@ -1,9 +1,10 @@
-/* Pastel color palette */
+/* Custom color palette */
 :root {
-  --color-bg: #FFFBFE;      /* very light pink */
-  --color-primary: #BAE1FF; /* pastel blue */
-  --color-secondary: #BAFFC9; /* pastel green */
-  --color-accent: #FFDFBA;   /* pastel orange */
+  --color-bg: #efebce;      /* Beige */
+  --color-primary: #a3a380; /* Dry Sage */
+  --color-secondary: #d6ce93; /* Vanilla Custard */
+  --color-accent: #bb8588;   /* Dusty Rose */
+  --color-alt: #d8a48f;      /* Light Bronze */
   --color-text: #333;
 }
 
@@ -55,7 +56,7 @@ body {
 }
 
 .site-footer {
-  background: var(--color-primary);
+  background: var(--color-alt);
   color: var(--color-bg);
   text-align: center;
   padding: 1rem 0;
