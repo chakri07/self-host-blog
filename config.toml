@@ -1,0 +1,7 @@
+baseURL = "https://<your-username>.github.io/self-host-blog/"
+languageCode = "en-us"
+title = "Self-hosted Blog"
+
+# When you run `hugo`, output can be directed to `docs/` for Pages.
+[outputs]
+  home = ["HTML"]
