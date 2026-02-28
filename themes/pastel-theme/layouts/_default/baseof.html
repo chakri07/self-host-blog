@@ -9,7 +9,30 @@
 <body>
   {{ partial "header.html" . }}
   <main>
-    {{ block "main" . }}{{ end }}
+    <div class="search-bar">
+      <input type="text" placeholder="Search your hobbies...">
+      <button>Search</button>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        {{ block "main" . }}{{ end }}
+      </div>
+      <aside class="sidebar">
+        <h2>Categories</h2>
+        <ul>
+          {{ range .Site.Taxonomies.categories }}
+          <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+          {{ end }}
+        </ul>
+        <h2>Tags</h2>
+        <ul>
+          {{ range .Site.Taxonomies.tags }}
+          <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+          {{ end }}
+        </ul>
+      </aside>
+    </div>
   </main>
   {{ partial "footer.html" . }}
 </body>

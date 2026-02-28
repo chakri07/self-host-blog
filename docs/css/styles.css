@@ -1,41 +1,50 @@
-/* Custom color palette */
+/* Updated color palette and layout for better alignment and hobby journal features */
 :root {
-  --color-bg: #efebce;      /* Beige */
-  --color-primary: #a3a380; /* Dry Sage */
-  --color-secondary: #d6ce93; /* Vanilla Custard */
-  --color-accent: #bb8588;   /* Dusty Rose */
-  --color-alt: #d8a48f;      /* Light Bronze */
-  --color-text: #333;
+  --color-bg: #f4f1de; /* Eggshell */
+  --color-primary: #3d405b; /* Twilight Indigo */
+  --color-secondary: #e07a5f; /* Burnt Peach */
+  --color-accent: #3d405b; /* Twilight Indigo */
+  --color-text: #e07a5f; /* Burnt Peach */
+  --font-family: 'Roboto', sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
   background: var(--color-bg);
   color: var(--color-text);
-  line-height: 1.6;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
 .site-header {
   background: var(--color-primary);
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   text-align: center;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
 .site-title a {
-  color: var(--color-bg);
+  color: white;
   text-decoration: none;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .site-description {
   color: var(--color-secondary);
-  margin-top: 0.25rem;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
 }
 
 .main-nav {
@@ -44,29 +53,107 @@ body {
   margin: 1rem 0 0;
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .main-nav a {
-  color: var(--color-bg);
+  color: white;
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
   background: var(--color-accent);
+  transition: background 0.3s;
+}
+
+.main-nav a:hover {
+  background: var(--color-secondary);
 }
 
 .site-footer {
-  background: var(--color-alt);
-  color: var(--color-bg);
+  background: var(--color-primary);
+  color: white;
   text-align: center;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   margin-top: 4rem;
+  font-size: 0.9rem;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
 h1, h2, h3 {
   color: var(--color-text);
+  font-weight: bold;
+  text-align: center;
 }
 
 .post header h1 {
   margin-top: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+ul li {
+  margin: 0.5rem 0;
+}
+
+ul li a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+ul li a:hover {
+  color: var(--color-secondary);
+}
+
+.article {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.sidebar {
+  background: var(--color-primary);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.sidebar h2 {
+  color: var(--color-secondary);
+  text-align: center;
+}
+
+.search-bar {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.search-bar input {
+  padding: 0.5rem;
+  width: 80%;
+  border: 1px solid var(--color-secondary);
+  border-radius: 5px;
+}
+
+.search-bar button {
+  padding: 0.5rem 1rem;
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.search-bar button:hover {
+  background: var(--color-secondary);
 }

@@ -2,10 +2,6 @@ baseURL = "https://example.com/"
 languageCode = "en-us"
 title = "My Hobby Journal"
 
-# When you run `hugo`, output can be directed to `docs/` for Pages.
-[outputs]
-  home = ["HTML"]
-
 theme = "pastel-theme"
 publishDir = "docs"
 
