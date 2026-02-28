@@ -1,14 +1,20 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
     <title>Content Manager</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script src="/admin/decap-cms.js"></script>
+    <script>
+      // Tell Decap CMS not to auto-initialize; we'll call CMS.init manually.
+      window.CMS_MANUAL_INIT = true;
+    </script>
   </head>
   <body>
     <!-- Decap CMS mount point -->
     <div id="nc-root"></div>
+
+    <!-- Load Decap CMS bundle after the mount point exists -->
+    <script src="/admin/decap-cms.js"></script>
 
     <!-- This is where the Decap CMS will be initialized -->
     <script>
