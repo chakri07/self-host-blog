@@ -1,21 +1,58 @@
 /* Slick dark-mode editorial theme */
 :root {
   --color-bg: #0b0d17;
-  --color-surface: #13151f;
-  --color-surface-raised: #1a1d2e;
+  --color-surface: #111521;
+  --color-surface-raised: #182030;
   --color-border: rgba(255, 255, 255, 0.07);
-  --color-primary: #f0f2f8;
-  --color-accent: #e07a50;
-  --color-accent-dim: rgba(224, 122, 80, 0.15);
-  --color-text: #b8bece;
-  --color-muted: #5c6278;
+  --color-primary: #eef1f8;
+  --color-text: #b4bdd0;
+  --color-muted: #52596e;
+
+  /* Accent – deep teal slate */
+  --color-accent: #2A3D45;
+  --color-accent-mid: #3a5560;
+  --color-accent-dim: rgba(42, 61, 69, 0.35);
+
+  /* Highlight – bright seafoam, luminous sibling of the accent */
+  --color-highlight: #4ECBA5;
+  --color-highlight-dim: rgba(78, 203, 165, 0.15);
+
+  /* Gradients */
+  --gradient-accent: linear-gradient(135deg, #2A3D45 0%, #3a5a60 100%);
+  --gradient-highlight: linear-gradient(135deg, #4ECBA5 0%, #62DDB8 100%);
+  --gradient-title: linear-gradient(135deg, #eef1f8 0%, #4ECBA5 100%);
+  --gradient-card-border: linear-gradient(135deg, rgba(78,203,165,0.22) 0%, rgba(42,61,69,0.35) 50%, transparent 100%);
+
+  /* Shadows – 3-layer floating system */
+  /* Resting: card sitting flat, close to the surface */
+  --shadow-card:
+    0 1px 1px rgba(0,0,0,0.8),
+    0 2px 6px rgba(0,0,0,0.55),
+    0 6px 16px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(78,203,165,0.06);
+
+  /* Hover: card has risen ~16px off the surface.
+     Contact shadow stays tight under the card (simulates base footprint).
+     Diffuse shadow spreads wide & goes soft (simulates real lift height).
+     Teal glow adds the luminous "lit from above" feel. */
+  --shadow-hover:
+    0 2px 3px rgba(0,0,0,0.9),
+    0 8px 12px rgba(0,0,0,0.7),
+    0 24px 48px rgba(0,0,0,0.55),
+    0 48px 80px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(78,203,165,0.22),
+    0 0 80px rgba(42,61,69,0.45);
+
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.6), 0 20px 56px rgba(0, 0, 0, 0.5);
+  --shadow-accent-glow: 0 0 0 1px rgba(78, 203, 165, 0.2), 0 8px 40px rgba(42, 61, 69, 0.5);
   --radius-card: 12px;
   --radius-pill: 999px;
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --transition-swift: 140ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Spring-like ease: fast out, gentle settle – used for the lift */
+  --transition-ease: 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-shadow: 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -25,7 +62,11 @@
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: var(--color-bg);
+  /* Aurora gradient – faint teal pulse in the upper-right corner */
+  background:
+    radial-gradient(ellipse 70% 45% at 75% -5%, rgba(42, 61, 69, 0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 30% at 20% 100%, rgba(42, 61, 69, 0.2) 0%, transparent 60%),
+    var(--color-bg);
   color: var(--color-text);
   line-height: 1.75;
 }
@@ -41,9 +82,9 @@ a {
 }
 
 .container {
-  max-width: 720px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 2rem 1.25rem 4rem;
+  padding: 2rem 1.5rem 4rem;
 }
 
 .site-header {
@@ -75,11 +116,12 @@ a {
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  background: var(--color-accent);
+  background: var(--gradient-accent);
+  box-shadow: 0 0 0 1px rgba(78, 203, 165, 0.18), 0 4px 16px rgba(42, 61, 69, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--color-highlight);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.95rem;
@@ -88,7 +130,7 @@ a {
 
 .brand-badge:hover {
   transform: scale(0.94);
-  box-shadow: 0 0 0 3px var(--color-accent-dim);
+  box-shadow: 0 0 0 3px rgba(78, 203, 165, 0.25), 0 4px 20px rgba(42, 61, 69, 0.6);
 }
 
 .site-title a {
@@ -136,12 +178,13 @@ a {
 
 .main-nav a:hover {
   background: var(--color-surface-raised);
-  color: var(--color-primary);
+  color: var(--color-highlight);
 }
 
 .main-nav a.is-active {
-  background: var(--color-surface-raised);
-  color: var(--color-primary);
+  background: var(--color-accent-dim);
+  color: var(--color-highlight);
+  box-shadow: inset 0 0 0 1px rgba(78, 203, 165, 0.15);
 }
 
 .site-footer {
@@ -150,7 +193,11 @@ a {
   text-align: center;
   font-size: 0.82rem;
   color: var(--color-muted);
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid transparent;
+  background-image: linear-gradient(var(--color-bg), var(--color-bg)),
+    linear-gradient(90deg, transparent 0%, rgba(78,203,165,0.3) 50%, transparent 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
 .layout-main {
@@ -166,10 +213,31 @@ a {
 .post-card {
   background: var(--color-surface);
   border-radius: var(--radius-card);
-  border: 1px solid var(--color-border);
+  /* Gradient border via background-clip technique */
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(var(--color-surface), var(--color-surface)),
+    linear-gradient(135deg, rgba(78,203,165,0.18) 0%, rgba(42,61,69,0.3) 50%, transparent 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
   padding: 1.5rem 1.75rem;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+/* Top accent band */
+.post-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-highlight) 60%, transparent 100%);
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity var(--transition-ease), height var(--transition-ease);
 }
 
 .content-card {
@@ -179,13 +247,20 @@ a {
   padding: 0;
 }
 
-/* Post list – single column editorial layout */
+/* Post list – 2-column vertical card grid */
 .post-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .post-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Fully clickable post-card via stretch link */
@@ -193,20 +268,65 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  transition: transform var(--transition-swift), box-shadow var(--transition-swift), border-color var(--transition-swift);
+  justify-content: flex-start;
+  min-height: 200px;
+  /* Shadows transition on a separate slower curve for realism */
+  transition:
+    transform var(--transition-ease),
+    box-shadow var(--transition-shadow),
+    background-image 240ms ease;
   cursor: pointer;
+  border-left: none;
+  /* Start with will-change so GPU compositing is ready */
+  will-change: transform, box-shadow;
+}
+
+/* Shimmer overlay – fades in on hover */
+.post-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(78, 203, 165, 0.04) 40%,
+    rgba(78, 203, 165, 0.08) 60%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-ease);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .post-card:hover {
-  transform: translateY(-3px);
+  /* translateY lifts it, scale(1.025) makes it grow toward you = 3D floating illusion */
+  transform: translateY(-14px) scale(1.025);
   box-shadow: var(--shadow-hover);
-  border-color: rgba(255, 255, 255, 0.12);
+  background-image:
+    linear-gradient(var(--color-surface-raised), var(--color-surface-raised)),
+    linear-gradient(135deg, rgba(78,203,165,0.3) 0%, rgba(42,61,69,0.5) 60%, transparent 100%);
+}
+
+.post-card:hover::before {
+  opacity: 1;
+  height: 3px;
+}
+
+.post-card:hover::after {
+  opacity: 1;
 }
 
 .post-card:active {
-  transform: translateY(-1px) scale(0.995);
-  box-shadow: var(--shadow-soft);
-  transition-duration: 80ms;
+  /* Snaps back down quickly on click – physical press feel */
+  transform: translateY(-4px) scale(1.005);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.9),
+    0 4px 8px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(78,203,165,0.12);
+  transition-duration: 90ms;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Stretch link – title anchor covers the entire card, making it fully clickable */
@@ -230,6 +350,13 @@ a {
   font-weight: 600;
   color: var(--color-primary);
   letter-spacing: -0.01em;
+  transition: color var(--transition-ease);
+  position: relative;
+  z-index: 1;
+}
+
+.post-card:hover .post-card-title {
+  color: var(--color-highlight);
 }
 
 .post-card-meta {
@@ -237,34 +364,56 @@ a {
   color: var(--color-muted);
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  transition: color var(--transition-ease);
+  position: relative;
+  z-index: 1;
+}
+
+.post-card:hover .post-card-meta {
+  color: rgba(78, 203, 165, 0.55);
 }
 
 .post-card-excerpt {
   font-size: 0.92rem;
   color: var(--color-text);
   line-height: 1.6;
+  transition: color var(--transition-ease);
+  position: relative;
+  z-index: 1;
+}
+
+.post-card:hover .post-card-excerpt {
+  color: #c8d4e0;
 }
 
 .post-card-link {
-  margin-top: 0.5rem;
+  margin-top: auto;
+  padding-top: 1rem;
   font-size: 0.84rem;
   font-weight: 500;
-  color: var(--color-accent);
+  color: var(--color-highlight);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
   position: relative;
   z-index: 2;
+  transition: gap var(--transition-ease), text-shadow var(--transition-ease);
+}
+
+.post-card:hover .post-card-link {
+  gap: 0.55rem;
+  text-shadow: 0 0 18px rgba(78, 203, 165, 0.5);
 }
 
 .post-card-link::after {
   content: "→";
-  transition: transform var(--transition-swift);
+  transition: transform var(--transition-ease);
+  display: inline-block;
 }
 
 .post-card:hover .post-card-link::after {
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 
 /* Page title area */
@@ -274,8 +423,12 @@ a {
   font-size: 2.2rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--color-primary);
   line-height: 1.15;
+  /* Gradient text */
+  background: var(--gradient-title);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .page-intro {
@@ -301,8 +454,12 @@ a {
   font-size: 2.4rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--color-primary);
   line-height: 1.15;
+  /* Gradient text – same family as page title */
+  background: var(--gradient-title);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .post-meta {
@@ -340,9 +497,35 @@ a {
 }
 
 .post .content a {
-  color: var(--color-accent);
+  color: var(--color-highlight);
   text-decoration: underline;
   text-underline-offset: 3px;
+  text-decoration-color: rgba(78, 203, 165, 0.4);
+}
+
+.post .content a:hover {
+  text-decoration-color: var(--color-highlight);
+}
+
+/* Accent-tinted blockquote */
+.post .content blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--color-accent-mid);
+  background: linear-gradient(90deg, rgba(42,61,69,0.2) 0%, transparent 100%);
+  color: var(--color-text);
+  font-style: italic;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Inline code highlight */
+.post .content code {
+  background: rgba(42, 61, 69, 0.45);
+  border: 1px solid rgba(78, 203, 165, 0.15);
+  color: var(--color-highlight);
+  padding: 0.15em 0.45em;
+  border-radius: 4px;
+  font-size: 0.88em;
 }
 
 /* Sidebar – hidden (removed from layout) */
