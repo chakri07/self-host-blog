@@ -9,12 +9,12 @@
       {{ range sort .Pages "Date" "desc" }}
         <li>
           <article class="post-card">
-            <h2 class="post-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
             <p class="post-card-meta">{{ .Date.Format "Jan 2, 2006" }}</p>
+            <h2 class="post-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
             {{ with .Summary }}
               <p class="post-card-excerpt">{{ . }}</p>
             {{ end }}
-            <a class="post-card-link" href="{{ .RelPermalink }}">Read adventure</a>
+            <a class="post-card-link" href="{{ .RelPermalink }}">Read post</a>
           </article>
         </li>
       {{ end }}

@@ -4,53 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap">
   <link rel="stylesheet" href="{{ "css/styles.css" | relURL }}">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body class="page-shell">
   {{ partial "header.html" . }}
   <main class="layout-main">
-    <div class="search-bar">
-      <input type="text" placeholder="Search adventures, experiments, and notes…" aria-label="Search posts (visual only)">
-      <button type="button">Search</button>
-    </div>
-
     <div class="container">
-      <div class="layout-grid">
-        <div class="content-card">
-          {{ block "main" . }}{{ end }}
-        </div>
-        <aside>
-          {{ if .Site.Taxonomies.categories }}
-          <section class="sidebar-card">
-            <h2 class="sidebar-title">Categories</h2>
-            <ul class="sidebar-list">
-              {{ range .Site.Taxonomies.categories }}
-              <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
-              {{ end }}
-            </ul>
-          </section>
-          {{ end }}
-
-          {{ if .Site.Taxonomies.tags }}
-          <section class="sidebar-card" style="margin-top: 1rem;">
-            <h2 class="sidebar-title">Tags</h2>
-            <ul class="sidebar-list">
-              {{ range .Site.Taxonomies.tags }}
-              <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
-              {{ end }}
-            </ul>
-          </section>
-          {{ end }}
-
-          {{ if and (not .Site.Taxonomies.categories) (not .Site.Taxonomies.tags) }}
-          <section class="sidebar-card">
-            <h2 class="sidebar-title">What lives here</h2>
-            <p class="empty-note">As you add more posts, you’ll start to see categories and tags show up here.</p>
-          </section>
-          {{ end }}
-        </aside>
-      </div>
+      {{ block "main" . }}{{ end }}
     </div>
   </main>
   {{ partial "footer.html" . }}
