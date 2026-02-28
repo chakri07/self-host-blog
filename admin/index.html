@@ -3,14 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Content Manager</title>
-    <script src="https://unpkg.com/decap-cms@^2.0.0/dist/decap-cms.js"></script>
+    <script src="https://unpkg.com/decap-cms@^2.0.0/dist/decap-cms.min.js"></script>
   </head>
   <body>
     <!-- This is where the Decap CMS will be mounted -->
     <script>
-      CMS.init({
-        config: '/admin/config.yml',
-      });
+      if (typeof CMS !== "undefined") {
+        CMS.init({
+          config: '/admin/config.yml',
+        });
+      } else {
+        console.error("Decap CMS failed to load. Please check the script URL or network connection.");
+      }
     </script>
   </body>
 </html>
