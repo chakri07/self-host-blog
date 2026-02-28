@@ -8,9 +8,8 @@
   <body>
     <!-- This is where the Netlify CMS will be mounted -->
     <script>
-      window.CMS_MANUAL_INIT = true;
-      window.initCMS({
-        configPath: '/admin/config.yml',
+      CMS.init({
+        config: '/admin/config.yml',
       });
     </script>
   </body>
