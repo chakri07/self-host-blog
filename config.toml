@@ -1,12 +1,12 @@
 baseURL = "/"
 languageCode = "en-us"
-title = "My Hobby Journal"
+title = "Port 8080 by Chakri"
 
 theme = "pastel-theme"
 publishDir = "docs"
 
 [params]
-  description = "A self-hosted site documenting my hobby"
+  description = "Dispatches from the terminal — projects, experiments, and notes on building things that actually run."
 
 [menu]
   [[menu.main]]

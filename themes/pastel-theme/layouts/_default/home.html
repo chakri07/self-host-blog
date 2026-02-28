@@ -1,21 +1,21 @@
 {{ define "main" }}
-  <header>
+  <header data-reveal="header">
     <h1 class="page-title">{{ .Site.Title }}</h1>
-    <p class="page-intro">{{ with .Site.Params.description }}{{ . }}{{ else }}Notes, experiments, and small adventures in my hobby.{{ end }}</p>
+    <p class="page-intro" data-reveal="intro">{{ with .Site.Params.description }}{{ . }}{{ else }}Notes, experiments, and small adventures in my hobby.{{ end }}</p>
   </header>
 
   {{ $posts := where .Site.RegularPages "Type" "in" (slice "posts" "post") }}
   {{ if $posts }}
     <ul class="post-list">
-      {{ range first 6 (sort $posts "Date" "desc") }}
+      {{ range $index, $page := first 6 (sort $posts "Date" "desc") }}
         <li>
-          <article class="post-card">
-            <p class="post-card-meta">{{ .Date.Format "Jan 2, 2006" }}</p>
-            <h2 class="post-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-            {{ with .Summary }}
+          <article class="post-card" data-reveal="card" style="--i: {{ $index }}">
+            <p class="post-card-meta">{{ $page.Date.Format "Jan 2, 2006" }}</p>
+            <h2 class="post-card-title"><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
+            {{ with $page.Summary }}
               <p class="post-card-excerpt">{{ . }}</p>
             {{ end }}
-            <a class="post-card-link" href="{{ .RelPermalink }}">Read post</a>
+            <a class="post-card-link" href="{{ $page.RelPermalink }}">Read post</a>
           </article>
         </li>
       {{ end }}

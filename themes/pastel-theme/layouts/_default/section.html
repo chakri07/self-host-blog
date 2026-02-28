@@ -1,20 +1,20 @@
 {{ define "main" }}
-  <header>
+  <header data-reveal="header">
     <h1 class="page-title">{{ .Title }}</h1>
-    <p class="page-intro">Browse all entries in this section.</p>
+    <p class="page-intro" data-reveal="intro">Browse all entries in this section.</p>
   </header>
 
   {{ if .Pages }}
     <ul class="post-list">
-      {{ range sort .Pages "Date" "desc" }}
+      {{ range $index, $page := sort .Pages "Date" "desc" }}
         <li>
-          <article class="post-card">
-            <p class="post-card-meta">{{ .Date.Format "Jan 2, 2006" }}</p>
-            <h2 class="post-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-            {{ with .Summary }}
+          <article class="post-card" data-reveal="card" style="--i: {{ $index }}">
+            <p class="post-card-meta">{{ $page.Date.Format "Jan 2, 2006" }}</p>
+            <h2 class="post-card-title"><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
+            {{ with $page.Summary }}
               <p class="post-card-excerpt">{{ . }}</p>
             {{ end }}
-            <a class="post-card-link" href="{{ .RelPermalink }}">Read post</a>
+            <a class="post-card-link" href="{{ $page.RelPermalink }}">Read post</a>
           </article>
         </li>
       {{ end }}

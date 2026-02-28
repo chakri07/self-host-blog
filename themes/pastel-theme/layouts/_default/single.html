@@ -1,10 +1,10 @@
 {{ define "main" }}
   <article class="post">
-    <header>
+    <header data-reveal="header">
       <h1 class="post-title">{{ .Title }}</h1>
-      <p class="post-meta">{{ .Date.Format "Jan 2, 2006" }}{{ with .ReadingTime }} • ~{{ . }} min read{{ end }}</p>
+      <p class="post-meta" data-reveal="intro">{{ .Date.Format "Jan 2, 2006" }}{{ with .ReadingTime }} • ~{{ . }} min read{{ end }}</p>
     </header>
-    <section class="content">
+    <section class="content" data-reveal="content">
       {{ .Content }}
     </section>
   </article>
