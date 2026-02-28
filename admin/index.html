@@ -9,12 +9,21 @@
   <body>
     <!-- This is where the Decap CMS will be mounted -->
     <script>
-      if (typeof CMS !== "undefined") {
+      // Wait for the Decap CMS script to load, then initialize
+      function initDecap() {
+        if (typeof CMS === 'undefined') {
+          console.error('Decap CMS global CMS is undefined.');
+          return;
+        }
         CMS.init({
           config: '/admin/config.yml',
         });
+      }
+
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        initDecap();
       } else {
-        console.error("Decap CMS failed to load. Please check the script URL or network connection.");
+        window.addEventListener('DOMContentLoaded', initDecap);
       }
     </script>
   </body>
