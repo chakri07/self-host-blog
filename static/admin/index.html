@@ -9,13 +9,14 @@
   <body>
     <!-- This is where the Decap CMS will be mounted -->
     <script>
-      // Wait for the Decap CMS script to load, then initialize
+      // Initialize Decap CMS using the global attached to window
       function initDecap() {
-        if (typeof CMS === 'undefined') {
-          console.error('Decap CMS global CMS is undefined.');
+        var cms = window.CMS || window.DecapCms;
+        if (!cms) {
+          console.error('Decap CMS object not found on window.');
           return;
         }
-        CMS.init({
+        cms.init({
           config: '/admin/config.yml',
         });
       }
