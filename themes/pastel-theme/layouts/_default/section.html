@@ -1,10 +1,25 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-<ul>
-  {{ range .Pages }}
-  <li>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-  </li>
+  <header>
+    <h1 class="page-title">{{ .Title }}</h1>
+    <p class="page-intro">Browse all entries in this section.</p>
+  </header>
+
+  {{ if .Pages }}
+    <ul class="post-list">
+      {{ range sort .Pages "Date" "desc" }}
+        <li>
+          <article class="post-card">
+            <h2 class="post-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            <p class="post-card-meta">{{ .Date.Format "Jan 2, 2006" }}</p>
+            {{ with .Summary }}
+              <p class="post-card-excerpt">{{ . }}</p>
+            {{ end }}
+            <a class="post-card-link" href="{{ .RelPermalink }}">Read adventure</a>
+          </article>
+        </li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p class="empty-note">No entries here yet – time to log another adventure.</p>
   {{ end }}
-</ul>
 {{ end }}

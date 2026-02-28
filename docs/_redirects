@@ -1,0 +1,2 @@
+# Netlify CMS admin route
+/admin/*  /admin/index.html  200

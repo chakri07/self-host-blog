@@ -1,11 +1,26 @@
 {{ define "main" }}
-<h1>{{ .Site.Title }}</h1>
-<p>{{ .Site.Params.description }}</p>
-<ul>
-  {{ range .Pages }}
-  <li>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-  </li>
+  <header>
+    <h1 class="page-title">{{ .Site.Title }}</h1>
+    <p class="page-intro">{{ with .Site.Params.description }}{{ . }}{{ else }}Notes, experiments, and small adventures in my hobby.{{ end }}</p>
+  </header>
+
+  {{ $posts := where .Site.RegularPages "Type" "in" (slice "posts" "post") }}
+  {{ if $posts }}
+    <ul class="post-list">
+      {{ range first 6 (sort $posts "Date" "desc") }}
+        <li>
+          <article class="post-card">
+            <h2 class="post-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            <p class="post-card-meta">{{ .Date.Format "Jan 2, 2006" }}</p>
+            {{ with .Summary }}
+              <p class="post-card-excerpt">{{ . }}</p>
+            {{ end }}
+            <a class="post-card-link" href="{{ .RelPermalink }}">Read adventure</a>
+          </article>
+        </li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p class="empty-note">Once you publish your first post, it will show up here.</p>
   {{ end }}
-</ul>
 {{ end }}

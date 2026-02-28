@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on My Hobby Journal</title>
-    <link>https://example.com/posts/</link>
+    <link>//localhost:1313/posts/</link>
     <description>Recent content in Posts on My Hobby Journal</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 26 Feb 2026 10:00:00 -0500</lastBuildDate>
-    <atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>First Adventure</title>
-      <link>https://example.com/posts/first-adventure/</link>
+      <link>//localhost:1313/posts/first-adventure/</link>
       <pubDate>Thu, 26 Feb 2026 10:00:00 -0500</pubDate>
-      <guid>https://example.com/posts/first-adventure/</guid>
+      <guid>//localhost:1313/posts/first-adventure/</guid>
       <description>&lt;p&gt;Hi, this is my first test hobby&lt;/p&gt;</description>
     </item>
   </channel>
