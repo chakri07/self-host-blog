@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (e.g., main)
+
+media_folder: "static/uploads" # Folder where uploaded files will be stored
+public_folder: "/uploads" # Public URL of the media folder
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
